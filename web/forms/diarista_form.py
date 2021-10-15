@@ -43,8 +43,5 @@ class DiaristaForm(forms.ModelForm):
         response = cep_service.buscar_cidade_cep(self.cleaned_data.get('cep'))
         cidade_api = json.loads(response.content)
         instance.codigo_ibge = cidade_api['ibge']
-        instance.bairro = cidade_api['bairro']
-        instance.logradouro = cidade_api['logradouro']
-        instance.estado = cidade_api['uf']
         instance.save()
         return instance
